@@ -14,4 +14,3 @@
  *        description: Se ha consultado el articulo
  *        
  */
-
