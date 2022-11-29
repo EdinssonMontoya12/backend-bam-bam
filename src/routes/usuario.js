@@ -8,5 +8,6 @@ router.get('/:id', usuario.obtenerUno);
 router.post('/', usuario.insertarUno);
 router.put('/:id', usuario.actualizarUno);
 router.delete('/:id', usuario.eliminarUno);
+router.get('/signin/:username/:contrasenia', usuario.iniciarSesion);
 
 export default router;

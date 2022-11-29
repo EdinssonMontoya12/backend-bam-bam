@@ -2,9 +2,9 @@ import pool from "@database";
 
 export default async (req, res) => {
     try {
-        
+
         const producto = [
-            req.body.id,
+            req.params.id,
             req.body.codigo,
             eq.body.preciov,
             req.body.precioc,
@@ -18,9 +18,11 @@ export default async (req, res) => {
 
         const result = await pool.query(consulta, producto);
 
+
+
         return res.json(result[0][0][0]);
 
     } catch (error) {
-        console.error(error);
+        console.log(error);
     }
 }

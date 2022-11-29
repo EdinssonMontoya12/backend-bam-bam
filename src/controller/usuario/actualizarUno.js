@@ -5,10 +5,10 @@ export default async (req, res) => {
     try {
 
         const usuario = [
-            req.body.id,
+            req.params.id,
             req.body.usuario,
-            req.body.contasenia,
-            req.body.codrol
+            req.body.codrol,
+            req.body.nombre
         ]
 
         const query = "CALL SUPER_ACTUALIZAR_USUARIO(?, ?, ?, ?)"
@@ -24,6 +24,8 @@ export default async (req, res) => {
             "OMENSAJE": "No se ha podido actualizar el usuario",
             "err": err.message
         }
+
+        return res.json(data())
 
     }
 

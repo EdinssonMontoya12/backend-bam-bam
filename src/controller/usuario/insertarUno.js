@@ -7,10 +7,13 @@ export default async (req, res) => {
         const usuario = [
             req.body.usuario,
             req.body.contasenia,
-            req.body.codrol
+            req.body.codrol,
+            req.body.nombre
         ]
 
-        const query = "CALL SUPER_INSERTAR_USUARIO(?, ?, ?)"
+        console.log(usuario)
+
+        const query = "CALL SUPER_INSERTAR_USUARIO(?, ?, ?, ?)"
 
         const result = await pool.query(query, usuario)
 

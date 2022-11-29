@@ -1,7 +1,7 @@
 import pool from "@database"
 
 export default async (req, res) => {
-    try{
+    try {
 
         let producto = [
             req.body.codigo,
@@ -16,13 +16,15 @@ export default async (req, res) => {
             req.body.cantmin
         ]
 
+
+
         const consulta = "CALL SUPER_INSERTAR_ARTICULO(?,?,?,?,?,?,?,?,?,?)";
-        
+
         const result = await pool.query(consulta, producto);
 
-        return res.json(result[0][0][0]);  
+        return res.json(result[0][0][0]);
 
-    } catch(err){
+    } catch (err) {
         console.error(err);
     }
 }
