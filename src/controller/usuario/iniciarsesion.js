@@ -1,27 +1,41 @@
 import pool from '@database'
+import encrypt from '@helpers/bycript'
 
 export default async (req, res) => {
 
     try {
 
-        //console.log(req.body)
-         const usuario = [
-             req.body.usuario,
-             req.body.contasenia,
-             req.body.codrol
-        ]
-        
-        const query = "CALL SUPER_INSERTAR_USUARIO(?, ?, ?)"
+        var data = null
 
-        const result = await pool.query(query, usuario)
+        const query = 'CALL SUPER_CONSULTAR_USUARIOS(?)'
+        var result = await pool.query(query, [req.params.username])
+        result = result[0][0]
 
-        return res.json(result[0][0][0])
+        if (result.length > 0) {
+            if (encrypt.compare(req.params.contrasenia, result[0].contrasenia)) {
+                data = {
+                    "OSUCCESS": 1,
+                    "DATA": result[0]
+                }
+            } else {
+                data = {
+                    "OSUCCESS": 0,
+                    "OMENSAJE": "Datos incorrectos"
+                }
+            }
+        } else {
+            data = {
+                "OSUCCESS": 0,
+                "OMENSAJE": "Datos incorrectos"
+            }
+        }
+
+        return res.json(data)
 
     } catch (err) {
-
         const data = {
             "OSUCCESS": 0,
-            "OMENSAJE": "No se ha podido insertar el usuario",
+            "OMENSAJE": "No se ha podido iniciar sesion",
             "err": err.message
         }
 

@@ -3,22 +3,25 @@ import pool from "@database"
 export default async (req, res) => {
     try{
 
-        let tercero = [
-            req.body.identificacion,//
-            req.body.nombre,//telefono, direccion,
-            req.body.codigo,//
-            req.body.codtipo,//
-            req.body.sucid,
-            req.body.codempresaprod
+        let grupoarticulo = [
+            req.body.codigogrup,
+            req.body.descripcion,
+            req.body.sucid
         ]
 
-        const consulta = "CALL SUPER_INSERTAR_TERCERO(?,?,?,?,?,?)";
+        const consulta = "CALL SUPER_INSERTAR_GRUPOARTICULO(?,?,?)";
         
-        const result = await pool.query(consulta, tercero);
+        const result = await pool.query(consulta, grupoarticulo);
 
-        return res.json(result[0][0][0]);  
+        return res.json(result[0][0][0]);
 
     } catch(err){
-        console.error(err); 
+        const data = {
+            "OSUCCESS": 0,
+            "OMENSAJE": "No se ha podido insertar el el grupo de articulo",
+            "err": err.message
+        }
+
+        return res.json(data)
     }
 }

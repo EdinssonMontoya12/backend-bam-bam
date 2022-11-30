@@ -17,6 +17,12 @@ export default async (req, res) => {
         return res.status(200).json(data);
 
     } catch (err) {
-        console.error(err);
+        const data = {
+            "OSUCCESS": 0,
+            "OMENSAJE": "No se ha podido consultar el articulo",
+            "err": err.message
+        }
+
+        return res.json(data)
     }
 }

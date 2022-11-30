@@ -6,9 +6,13 @@ export default async (req, res) => {
 
         const { id } = req.params
 
+        console.log(id)
+
         const query = "CALL SUPER_BORRAR_USUARIOS(?)"
 
         const result = await pool.query(query, [id])
+
+        console.log(result)
 
         return res.json(result[0][0][0])
 

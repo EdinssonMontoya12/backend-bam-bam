@@ -1,8 +1,6 @@
 import config from "./database";
 import mysql from "mysql2/promise";
 
-console.log(config)
-
 const pool = mysql.createPool(config);
 
 pool.getConnection()

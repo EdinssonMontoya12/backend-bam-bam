@@ -23,6 +23,12 @@ export default async (req, res) => {
         return res.json(result[0][0][0]);
 
     } catch (error) {
-        console.log(error);
+        const data = {
+            "OSUCCESS": 0,
+            "OMENSAJE": "No se ha podido actualizar el articulo",
+            "err": err.message
+        }
+
+        return res.json(data)
     }
 }

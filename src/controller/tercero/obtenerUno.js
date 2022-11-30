@@ -17,6 +17,12 @@ export default async (req, res) => {
         return res.json(data)
 
     } catch (err) {
-        console.log(err)
+        const data = {
+            "OSUCCESS": 0,
+            "OMENSAJE": "No se ha podido consultar el tercero",
+            "err": err.message
+        }
+
+        return res.json(data)
     }
 }

@@ -5,23 +5,26 @@ export default async (req, res) => {
     try {
 
         const tercero = [
-            req.body.id,
-            req.body.identificacion,
+            req.params.id,
             req.body.nombre,
-            req.body.codigo,
-            req.body.codtipo,
-            req.body.sucid,
-            req.body.codempresaprod
+            req.body.nit,
+            req.body.codigo
         ]
 
-        const query = "CALL SUPER_ACTUALIZAR_TERCERO(?,?,?,?,?,?,?)"
+        const query = "CALL SUPER_ACTUALIZAR_TERCERO(?,?,?,?)"
 
         const result = pool.query(query, tercero);
 
         return res.json(result[0][0][0])
 
     }catch(err){
-        console.log(err)
+        const data = {
+            "OSUCCESS": 0,
+            "OMENSAJE": "No se ha podido actualizar el grupo de articulo",
+            "err": err.message
+        }
+
+        return res.json(data)
     }
 
 }

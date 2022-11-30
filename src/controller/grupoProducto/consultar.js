@@ -8,7 +8,7 @@ export default async (req, res) => {
             req.params.sucid
         ]
 
-        const query = "CALL SUPER_CONSULTAR_TERCEROS(?, ?)"
+        const query = "CALL SUPER_CONSULTAR_GRUPOARTICULOS(?, ?)"
 
         const result = await pool.query(query, texto)
 
@@ -20,6 +20,12 @@ export default async (req, res) => {
         return res.json(data)
 
     }catch(err){
-        console.log(err)
+        const data = {
+            "OSUCCESS": 0,
+            "OMENSAJE": "No se ha podido consultar el grupo de articulo",
+            "err": err.message
+        }
+
+        return res.json(data)
     }
 }

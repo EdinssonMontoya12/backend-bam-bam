@@ -7,14 +7,20 @@ export default async (req, res) => {
         
         const { id } = req.params
 
-        const query  = 'CALL SUPER_BORRAR_TERCERO(?)'
+        const query  = 'CALL SUPER_ELIMINAR_GRUPOARTICULO(?)'
 
         const result = await pool.query(query, [id])
 
         return res.json(result[0][0][0])
 
     }catch(err){
-        console.log(err);
+        const data = {
+            "OSUCCESS": 0,
+            "OMENSAJE": "No se ha podido eliminar el el grupo de articulo",
+            "err": err.message
+        }
+
+        return res.json(data)
     }
 
 }

@@ -12,6 +12,12 @@ export default async (req, res) => {
         return res.json(result[0][0][0]);
 
     } catch (error) {
-        console.error(error);
+        const data = {
+            "OSUCCESS": 0,
+            "OMENSAJE": "No se ha podido eliminar el articulo",
+            "err": err.message
+        }
+
+        return res.json(data)
     }
 }

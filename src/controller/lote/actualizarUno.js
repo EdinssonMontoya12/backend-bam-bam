@@ -5,7 +5,7 @@ export default async (req, res) => {
     try {
 
         const lote = [
-            req.body.id,
+            req.params.id,
             req.body.codigo
         ]
 
@@ -16,6 +16,12 @@ export default async (req, res) => {
         return res.json(result[0][0][0])
 
     }catch(err){
-        console.log(err)
+        const data = {
+            "OSUCCESS": 0,
+            "OMENSAJE": "No se ha podido actualizar el lote",
+            "err": err.message
+        }
+
+        return res.json(data)
     }
 }

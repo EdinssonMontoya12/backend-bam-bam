@@ -25,7 +25,6 @@ const swaggerSpec = swaggerJSDoc(options)
 
 const swaggerDocs = (app) => {
     app.use('/doc-bam-bam', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-    console.log("Buenas");
 }
 
 export default swaggerDocs;

@@ -18,6 +18,12 @@ export default async (req, res) => {
         return res.json(result[0][0][0]);  
 
     } catch(err){
-        console.error(err); 
+        const data = {
+            "OSUCCESS": 0,
+            "OMENSAJE": "No se ha podido insertar el lote",
+            "err": err.message
+        }
+
+        return res.json(data)
     }
 }

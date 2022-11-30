@@ -5,7 +5,7 @@ export default async (req, res) => {
 
         const { id } = req.params
 
-        const query = "CALL SUPER_CONSULTAR_TERCERO(?)"
+        const query = "CALL SUPER_CONSULTAR_EMPRESAPRO(?)"
 
         const result = await pool.query(query, [id])
 
@@ -17,6 +17,12 @@ export default async (req, res) => {
         return res.json(data)
 
     } catch (err) {
-        console.log(err)
+        const data = {
+            "OSUCCESS": 0,
+            "OMENSAJE": "No se ha podido consultar el grupo de articulo",
+            "err": err.message
+        }
+
+        return res.json(data)
     }
 }

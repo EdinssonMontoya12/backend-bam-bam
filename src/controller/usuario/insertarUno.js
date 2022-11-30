@@ -1,4 +1,5 @@
 import pool from '@database'
+import encrypt from '@helpers/bycript'
 
 export default async (req, res) => {
 
@@ -6,14 +7,15 @@ export default async (req, res) => {
 
         const usuario = [
             req.body.usuario,
-            req.body.contasenia,
+            encrypt.encriptar(req.body.contrasenia),
             req.body.codrol,
-            req.body.nombre
+            req.body.nombre,
+            req.body.sucid
         ]
 
         console.log(usuario)
 
-        const query = "CALL SUPER_INSERTAR_USUARIO(?, ?, ?, ?)"
+        const query = "CALL SUPER_INSERTAR_USUARIO(?, ?, ?, ?, ?)"
 
         const result = await pool.query(query, usuario)
 
