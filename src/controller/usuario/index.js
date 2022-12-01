@@ -3,7 +3,7 @@ import obtenerUno from "./obtenerUno";
 import eliminarUno from "./eliminarUno";
 import consultar from "./consultar";
 import actualizarUno from "./actualizarUno";
-import iniciarSesion from "./iniciarSesion";
+import iniciarSesion from "./iniciarsesion";
 
 export {
     insertarUno,
