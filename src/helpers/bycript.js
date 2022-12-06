@@ -4,7 +4,7 @@ const saltRounds = 15;
 const encrypt = {}
 
 encrypt.encriptar = async (contrasenia) => {
-    return await bcrypt.hash('1155708', saltRounds)
+    return await bcrypt.hash(contrasenia, saltRounds)
 }
 
 encrypt.compare = async (contrasenia, contraseniaEncryp) => {

@@ -6,18 +6,22 @@ export default async (req, res) => {
         let tercero = [
             req.body.identificacion,
             req.body.nombre,
-            req.body.apellido,
-            req.body.correo,
-            req.body.telefono,
             req.body.codigo,
             req.body.codtipo,
             req.body.sucid,
-            req.body.codempresaprod
+            req.body.codempresaprod,
+            req.body.apellido,
+            req.body.correo,
+            req.body.telefono
         ]
+
+        console.log(tercero)
 
         const consulta = "CALL SUPER_INSERTAR_TERCERO(?,?,?,?,?,?,?,?,?)";
         
         const result = await pool.query(consulta, tercero);
+
+        console.log(result[0][0][0])
 
         return res.json(result[0][0][0]);  
 
@@ -27,7 +31,7 @@ export default async (req, res) => {
             "OMENSAJE": "No se ha podido insertar el tercero",
             "err": err.message
         }
-
+        console.log(data)
         return res.json(data)
     }
 }

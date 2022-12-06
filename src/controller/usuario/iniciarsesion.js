@@ -12,7 +12,7 @@ export default async (req, res) => {
         result = result[0][0]
 
         if (result.length > 0) {
-            if (encrypt.compare(req.params.contrasenia, result[0].contrasenia)) {
+            if (await encrypt.compare(req.params.contrasenia, result[0].contrasenia)) {
                 data = {
                     "OSUCCESS": 1,
                     "DATA": result[0]

@@ -1,17 +1,13 @@
 import pool from '@database'
 
 export default async (req, res) => {
-    try{
+    try {
 
-        const texto = [
-            req.params.texto,
-            req.params.sucid,
-            req.params.tipoter
-        ]
+        const { id } = req.params
 
-        const query = "CALL SUPER_CONSULTAR_TERCEROS(?, ?, ?)"
+        const query = "CALL SUPER_ACTUALIZAR_GRUPOARTICULO(?)"
 
-        const result = await pool.query(query, texto)
+        const result = await pool.query(query, [id])
 
         const data = {
             "OSUCCESS": result[0][0].length > 0 ? 1 : 0,
@@ -20,10 +16,10 @@ export default async (req, res) => {
 
         return res.json(data)
 
-    }catch(err){
+    } catch (err) {
         const data = {
             "OSUCCESS": 0,
-            "OMENSAJE": "No se ha podido consultar el tercero",
+            "OMENSAJE": "No se ha podido consultar el grupo de articulo",
             "err": err.message
         }
 
