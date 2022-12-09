@@ -5,7 +5,10 @@ export default async (req, res) => {
     try {
 
         const detalles = req.body.detalles
+
         var contador = 0
+        var sePuedeAsentar = true
+        var lote = null
 
         while (contador < detalles.length) {
             const query = "CALL SUPER_CANTIDAD_LOTE(?,?)"

@@ -10,5 +10,7 @@ router.put('/:id', factura.actualizarUno);
 router.delete('/:id', factura.eliminarUno);  
 router.put('/asentar/venta', factura.asentarventa);
 router.put('/asentar/compra', factura.asentarcompra);  
+router.put('/reversar/venta', factura.revsersarventa);
+router.put('/reversar/compra', factura.reversarcompra);
 
 export default router;

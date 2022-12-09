@@ -5,6 +5,8 @@ import consultar from "./consultar";
 import actualizarUno from "./actualizarUno"; 
 import asentarventa from "./asentarventa";
 import asentarcompra from "./asentarcompra";
+import reversarcompra from "./reversarcompra";
+import revsersarventa from "./revsersarventa";
 
 export {
     insertarUno,
@@ -13,5 +15,7 @@ export {
     actualizarUno, 
     eliminarUno,
     asentarventa,
-    asentarcompra
+    asentarcompra,
+    reversarcompra,
+    revsersarventa
 }
