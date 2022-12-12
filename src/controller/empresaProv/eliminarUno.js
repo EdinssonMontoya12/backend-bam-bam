@@ -10,13 +10,13 @@ export default async (req, res) => {
         const query  = 'CALL SUPER_BORRAR_EMPRESAPRO(?)'
 
         const result = await pool.query(query, [id])
-
+        
         return res.json(result[0][0][0])
 
     }catch(err){
         const data = {
             "OSUCCESS": 0,
-            "OMENSAJE": "No se ha podido eliminar el grupo de articulo",
+            "OMENSAJE": "No se ha podido eliminar la empresa proveedora",
             "err": err.message
         }
 

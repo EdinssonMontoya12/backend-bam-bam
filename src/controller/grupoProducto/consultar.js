@@ -4,8 +4,8 @@ export default async (req, res) => {
     try{
 
         const texto = [
-            req.params.texto,
-            req.params.sucid
+            req.params.sucid,
+            req.params.texto
         ]
 
         const query = "CALL SUPER_CONSULTAR_GRUPOARTICULOS(?, ?)"
@@ -25,7 +25,7 @@ export default async (req, res) => {
             "OMENSAJE": "No se ha podido consultar el grupo de articulo",
             "err": err.message
         }
-
+       
         return res.json(data)
     }
 }

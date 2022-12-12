@@ -4,15 +4,15 @@ export default async (req, res) => {
 
     try {
 
-        const tercero = [
+        const grupo = [
             req.params.id,
-            req.body.codigogrup,
-            req.body.descripcion
+            req.body.codigo,
+            req.body.descri
         ]
-
+        console.log(grupo)
         const query = "CALL SUPER_ACTUALIZAR_GRUPOARTICULO(?,?,?)"
 
-        const result = pool.query(query, tercero);
+        const result = await pool.query(query, grupo);
 
         return res.json(result[0][0][0])
 
@@ -22,7 +22,7 @@ export default async (req, res) => {
             "OMENSAJE": "No se ha podido actualizar el grupo de articulo",
             "err": err.message
         }
-
+        console.log(data)
         return res.json(data)
     }
 

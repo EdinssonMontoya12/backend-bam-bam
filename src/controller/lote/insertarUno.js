@@ -4,14 +4,13 @@ export default async (req, res) => {
     try{
 
         let lote = [
-            req.body.articuloid,
-            req.body.fechaven,
-            req.body.cantidad,
+            req.body.producto.split('/')[0].trim(),
+            req.body.fechavenc,
             req.body.sucid,
             req.body.codigo
         ]
-
-        const consulta = "CALL SUPER_INSERTAR_LOTE(?,?,?,?,?)";
+        console.log(lote)
+        const consulta = "CALL SUPER_INSERTAR_LOTE(?,?,?,?)";
         
         const result = await pool.query(consulta, lote);
 
@@ -23,7 +22,7 @@ export default async (req, res) => {
             "OMENSAJE": "No se ha podido insertar el lote",
             "err": err.message
         }
-
+        console.log(data)
         return res.json(data)
     }
 }

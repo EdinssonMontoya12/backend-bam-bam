@@ -5,17 +5,21 @@ export default async (req, res) => {
 
     try {
 
+        const contrasenia = await encrypt.encriptar(req.body.contrasenia)
+
         const usuario = [
-            req.body.usuario,
-            encrypt.encriptar(req.body.contrasenia),
-            req.body.codrol,
+            req.body.username,
+            contrasenia,
+            req.body.radio1,
             req.body.nombre,
-            req.body.sucid
+            req.body.apellido,
+            req.body.telefono,
+            1,
+            req.body.sucursal,
+            req.body.email
         ]
 
-        console.log(usuario)
-
-        const query = "CALL SUPER_INSERTAR_USUARIO(?, ?, ?, ?, ?)"
+        const query = "CALL SUPER_INSERTAR_USUARIO(?,?,?,?,?,?,?,?,?)"
 
         const result = await pool.query(query, usuario)
 
@@ -28,6 +32,8 @@ export default async (req, res) => {
             "OMENSAJE": "No se ha podido insertar el usuario",
             "err": err.message
         }
+
+        console.log(data)
 
         return res.json(data)
     }

@@ -6,10 +6,13 @@ export default async (req, res) => {
 
         const sucursal = [
             req.body.codigo,
-            req.body.nombre
+            req.body.nombre,
+            req.body.direccion,
+            req.body.telefono,
+            req.body.email
         ]
-
-        const query = "CALL SUPER_INSERTAR_SUCURSAL(?, ?)"
+        console.log(sucursal)
+        const query = "CALL SUPER_INSERTAR_SUCURSAL(?,?,?,?,?)"
 
         const result = await pool.query(query, sucursal)
 
@@ -21,7 +24,7 @@ export default async (req, res) => {
             "OMENSAJE": "No se ha podido insertar la sucursal",
             "err": err.message
         }
-
+        console.log(data)
         return res.json(data)
     }
 

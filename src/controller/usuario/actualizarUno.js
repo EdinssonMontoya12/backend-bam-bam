@@ -1,17 +1,29 @@
 import pool from '@database'
+import encrypt from '@helpers/bycript'
 
 export default async (req, res) => {
 
     try {
 
+        var contrasenia = ''
+
+        if(req.body.changepass == 1){
+            contrasenia = await encrypt.encriptar(req.body.contrasenia)
+        }
+
         const usuario = [
             req.params.id,
-            req.body.usuario,
-            req.body.codrol,
-            req.body.nombre
+            req.body.username,
+            contrasenia,
+            req.body.radio1,
+            req.body.nombre,
+            req.body.apellido,
+            req.body.telefono,
+            req.body.sucursal.split('/')[0].trim(),
+            req.body.email
         ]
-
-        const query = "CALL SUPER_ACTUALIZAR_USUARIO(?, ?, ?, ?)"
+        
+        const query = "CALL SUPER_ACTUALIZAR_USUARIO(?,?,?,?,?,?,?,?,?)"
 
         const result = await pool.query(query, usuario)
 
@@ -24,8 +36,8 @@ export default async (req, res) => {
             "OMENSAJE": "No se ha podido actualizar el usuario",
             "err": err.message
         }
-
-        return res.json(data())
+        console.log(data)
+        return res.json(data)
 
     }
 

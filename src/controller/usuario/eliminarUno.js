@@ -8,7 +8,7 @@ export default async (req, res) => {
 
         console.log(id)
 
-        const query = "CALL SUPER_BORRAR_USUARIOS(?)"
+        const query = "CALL SUPER_DESACTIVAR_USUARIOS(?)"
 
         const result = await pool.query(query, [id])
 

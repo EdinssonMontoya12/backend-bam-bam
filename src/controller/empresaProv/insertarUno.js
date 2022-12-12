@@ -3,7 +3,7 @@ import pool from "@database"
 export default async (req, res) => {
     try{
 
-        let tercero = [
+        let empresa = [
             req.body.nombre,
             req.body.nit,
             req.body.sucid,
@@ -12,7 +12,7 @@ export default async (req, res) => {
 
         const consulta = "CALL SUPER_INSERTAR_EMPRESAPRO(?,?,?,?)";
         
-        const result = await pool.query(consulta, tercero);
+        const result = await pool.query(consulta, empresa);
 
         return res.json(result[0][0][0]);  
 

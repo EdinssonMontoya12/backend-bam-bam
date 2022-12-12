@@ -4,8 +4,8 @@ export default async (req, res) => {
     try{
 
         let grupoarticulo = [
-            req.body.codigogrup,
-            req.body.descripcion,
+            req.body.codigo,
+            req.body.descri,
             req.body.sucid
         ]
 
@@ -21,7 +21,7 @@ export default async (req, res) => {
             "OMENSAJE": "No se ha podido insertar el el grupo de articulo",
             "err": err.message
         }
-
+        
         return res.json(data)
     }
 }
