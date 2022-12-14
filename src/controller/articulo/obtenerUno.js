@@ -11,7 +11,7 @@ export default async (req, res) => {
 
         const data = {
             "OSUCCESS": result[0][0].length > 0 ? 1 : 0,
-            "DATA": result[0][0]
+            "DATA": result[0][0][0]
         };
 
         return res.status(200).json(data);

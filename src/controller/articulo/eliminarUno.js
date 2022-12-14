@@ -5,7 +5,7 @@ export default async (req, res) => {
         
         const { id } = req.params;
 
-        const consulta = "CALL SUPER_ELIMINAR_ARTICULO(?)";
+        const consulta = "CALL SUPER_BORRAR_ARTICULO(?)";
 
         const result = await pool.query(consulta, [id]);
 
@@ -15,9 +15,9 @@ export default async (req, res) => {
         const data = {
             "OSUCCESS": 0,
             "OMENSAJE": "No se ha podido eliminar el articulo",
-            "err": err.message
+            "err": error.message
         }
-
+        console.log(data)
         return res.json(data)
     }
 }

@@ -44,7 +44,7 @@ export default async (req, res) => {
         }else {
             return res.json({
                 OSUCCESS: 0,
-                OMENSAJE: `El articulo ${lote.productonombre} con lote ${lotecod} no tiene suficientes existencias`
+                OMENSAJE: `El articulo ${lote.productonombre} con lote ${lote.codigo} no tiene suficientes existencias`
             })
         }
 
@@ -54,7 +54,7 @@ export default async (req, res) => {
             "OMENSAJE": "No se ha podido asentar la factura",
             "err": err.message
         }
-
+        
         return res.json(data)
     }
 
