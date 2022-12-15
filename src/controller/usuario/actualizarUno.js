@@ -22,7 +22,7 @@ export default async (req, res) => {
             req.body.sucursal.split('/')[0].trim(),
             req.body.email
         ]
-        
+        console.log(usuario)
         const query = "CALL SUPER_ACTUALIZAR_USUARIO(?,?,?,?,?,?,?,?,?)"
 
         const result = await pool.query(query, usuario)
